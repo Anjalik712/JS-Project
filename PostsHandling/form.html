@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Post</title>
+</head>
+<body>
+    <form id="form" action="index.html" method="get">
+        <label for="postid">ID</label>
+        <input type="text" id="postid">
+        <br>
+        <label for="posttitle">TITLE</label>
+        <input type="text" id="posttitle">
+        <br>
+        <button type="submit" onclick="transferValue()">SUBMIT</button>
+    </form>
+    <script>
+        function transferValue(){
+            const postid=document.getElementById("postid").value;
+            const posttitle=document.getElementById("posttitle").value;
+            let postCount = localStorage.getItem('postCount') || 0;
+            postCount = parseInt(postCount) + 1;
+            localStorage.setItem(`postid${postCount}`, postid);
+            localStorage.setItem(`posttitle${postCount}`, posttitle);
+            localStorage.setItem('postCount', postCount);
+            window.location.href="index.html";
+        }
+    </script>
+</body>
+</html>

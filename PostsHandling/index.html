@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+</head>
+<body>
+    <div class="container">
+        <table border="1px">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>TITLE</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <button class="addButton">ADD</button>
+    </div>
+    <script>
+        var posts = [
+            { id: 1, title: `daily JS news` },
+            { id: 2, title: `daily Python news` },
+            { id: 3, title: `daily C# news` },
+            { id: 4, title: `daily Java news` },
+        ];
+        var tbody = document.querySelector("tbody");
+        var addButton = document.querySelector(".addButton");
+        var displayDetails = function (post) {
+            tbody.innerHTML += `<tr>
+                                    <td>${post.id}</td>
+                                    <td>${post.title}</td>
+                                </tr>`;
+        }; 
+        var postCount = localStorage.getItem('postCount') || 0;
+        for (var i = 1; i <= postCount; i++) {
+            var id = localStorage.getItem(`postid${i}`);
+            var title = localStorage.getItem(`posttitle${i}`);
+            if (id && title) {
+                posts.push({ id: id, title: title });
+            }
+        }
+        posts.forEach(displayDetails);
+        addButton.addEventListener("click", () => {
+            location.href = "form.html";
+        });
+    </script>
+</body>
+</html>
